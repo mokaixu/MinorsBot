@@ -95,7 +95,7 @@ async def cat(ctx):
 @bot.command(pass_context=True)
 async def bird(ctx):
 	bird_emojis = ["🕊", "🦅", "🦆", "🦜", "🐥", "🦢"]
-	res = requests.get("https://api.thecatapi.com/v1/images/search")
+	res = requests.get("https://some-random-api.ml/img/birb")
 	bird_image_url = res.json()['link']
 
 	msg = bird_image_url + ' ' + bird_emojis[random.randint(0, len(bird_emojis) - 1)]
