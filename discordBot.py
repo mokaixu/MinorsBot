@@ -92,6 +92,17 @@ async def cat(ctx):
 	await ch.send(msg)
 
 
+@bot.command(pass_context=True)
+async def bird(ctx):
+	bird_emojis = ["🕊", "🦅", "🦆", "🦜", "🐥", "🦢"]
+	res = requests.get("https://api.thecatapi.com/v1/images/search")
+	bird_image_url = res.json()['link']
+
+	msg = bird_image_url + ' ' + bird_emojis[random.randint(0, len(bird_emojis) - 1)]
+	ch = ctx.message.channel
+	await ch.send(msg)
+
+
 
 
 
