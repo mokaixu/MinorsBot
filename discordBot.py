@@ -111,16 +111,6 @@ async def bird(ctx):
 
 
 
-
-
-
-
-
-
-
-
-
-
 @bot.command(pass_context=True)
 async def hit(ctx):
 	msg = "💩"
@@ -133,11 +123,11 @@ async def loveme(ctx):
     name = ctx.message.author.nick 
     if name is None:
     	name = ctx.message.author
-	res = requests.get("https://complimentr.com/api")
-	resj = json.loads(res.content)
-	msg = resj["compliment"] + ' ' + name + ' ' + emojis[random.randint(0, len(emojis) - 1)]
-	ch = ctx.message.channel
-	await ch.send(msg)
+    res = requests.get("https://complimentr.com/api")
+    resj = json.loads(res.content)
+    msg = resj["compliment"] + ' ' + name + ' ' + emojis[random.randint(0, len(emojis) - 1)]
+    ch = ctx.message.channel
+    await ch.send(msg)
 	
 
 @bot.command(pass_context=True)
