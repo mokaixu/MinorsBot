@@ -16,6 +16,12 @@ greetings = ['Love that for you ',
 'Haikyuu is a great show ',
 'I only talk to koreaboos ',
 'SHAKE IT OUTTTTTT ',
+'pee pee poo poo',
+'haw yee',
+'that\'s SO raven',
+'have you heard about bitcoin?',
+'no, luke. i am your father',
+'you must try the bananas darling, they\'re dashing!',
 'je va jen jah ',
 'Wow, are you in a cappella ',
 'Cool ',
@@ -124,9 +130,12 @@ async def hit(ctx):
 
 @bot.command(pass_context=True)
 async def loveme(ctx):
+    name = ctx.message.author.nick 
+    if name is None:
+    	name = ctx.message.author
 	res = requests.get("https://complimentr.com/api")
 	resj = json.loads(res.content)
-	msg = resj["compliment"] + ' ' + emojis[random.randint(0, len(emojis) - 1)]
+	msg = resj["compliment"] + ' ' + name + ' ' + emojis[random.randint(0, len(emojis) - 1)]
 	ch = ctx.message.channel
 	await ch.send(msg)
 	
