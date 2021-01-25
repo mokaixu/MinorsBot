@@ -118,6 +118,17 @@ async def dog(ctx):
 
 
 @bot.command(pass_context=True)
+async def meowmeow(ctx):
+	res = requests.get("https://some-random-api.ml/facts/cat")
+	res_url = res.json()['fact']
+	# resj = json.loads(res.content)
+	# print(resj)
+	msg = res_url 
+	ch = ctx.message.channel
+	await ch.send(msg)
+
+
+@bot.command(pass_context=True)
 async def bird(ctx):
 	bird_emojis = ["🕊", "🦅", "🦆", "🦜", "🐥", "🦢"]
 	res = requests.get("https://some-random-api.ml/img/birb")
