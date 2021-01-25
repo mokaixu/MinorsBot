@@ -99,6 +99,25 @@ async def cat(ctx):
 
 
 @bot.command(pass_context=True)
+async def todo(ctx):
+	msg = "https://docs.google.com/presentation/d/1CGV3Pa7cYJ95-l0gkZqEiS_tLzT8-uBAK-N9Y7JRVLY/edit?usp=sharing"
+	ch = ctx.message.channel
+	await ch.send(msg)
+
+
+
+@bot.command(pass_context=True)
+async def dog(ctx):
+	res = requests.get("https://dog.ceo/api/breeds/image/random")
+	res_url = res.json()['message']
+	# resj = json.loads(res.content)
+	# print(resj)
+	msg = res_url 
+	ch = ctx.message.channel
+	await ch.send(msg)
+
+
+@bot.command(pass_context=True)
 async def bird(ctx):
 	bird_emojis = ["🕊", "🦅", "🦆", "🦜", "🐥", "🦢"]
 	res = requests.get("https://some-random-api.ml/img/birb")
