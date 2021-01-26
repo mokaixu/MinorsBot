@@ -153,7 +153,7 @@ async def helpme(ctx):
 	if name is None:
 		name = ctx.message.author
 	res = requests.get("https://api.adviceslip.com/advice")
-	msg = res.json()['slip']["advice"] + ' ' + emojis[random.randint(0, len(cat_emojis) - 1)] + ' ' + name
+	msg = res.json()['slip']["advice"] + ' ' + emojis[random.randint(0, len(emojis) - 1)] + ' ' + name
 	ch = ctx.message.channel
 	await ch.send(msg)
 
