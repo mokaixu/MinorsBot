@@ -108,6 +108,13 @@ async def bird(ctx):
 	ch = ctx.message.channel
 	await ch.send(msg)
 
+@bot.command(pass_context=True)
+async def chuck(ctx):
+	res = requests.get("https://api.chucknorris.io/jokes/random")
+	msg = res.json()['value']
+
+	ch = ctx.message.channel
+	await ch.send(msg)
 
 
 
