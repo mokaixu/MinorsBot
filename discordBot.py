@@ -224,6 +224,36 @@ async def hi(ctx):
     ch = ctx.message.channel
     await ch.send(msg)
 
+def isUserAdministrator(usr):
+# First check to see if the user has the admin role
+    adminRole = bc.getProperty('AdminRole')
+    userRoles = (r for r in usr.roles)
+    try:
+        return ((adminRole in userRoles) or isUserServerOwner(usr))
+    except:
+        print("An uncaught exception has occurred")
+        return False
+    return False
+
+def isUserAdministrator_Check(ctx):
+    usr = ctx.message.author
+    return isUserAdministrator(usr)
+    
+@bot.command(pass_context=True)
+@commands.check(isUserAdministrator_Check)
+async def qotd(ctx, msg):
+    # Sends a random greeting with the !greet command.
+    #msg = greetings[random.randint(0, len(greetings) - 1)] + str(ctx.message.author) + '!'
+
+    name = ctx.message.author.nick
+    if name is None:
+        name = ctx.message.author
+
+    ch = 759447692446400532
+    await ch.send(msg)
+    
+    
+    
 
 @bot.command(pass_context=True)
 async def purge(ctx, num):
@@ -258,20 +288,8 @@ async def purge(ctx, num):
 # 	return isUserServerOwner(usr)
 
 # # This checks if the user has the role specified by the 'AdminRole' property or is the server owner
-# def isUserAdministrator(usr):
-# 	# First check to see if the user has the admin role
-# 	adminRole = bc.getProperty('AdminRole')
-# 	userRoles = (r for r in usr.roles)
-# 	try:
-# 		return ((adminRole in userRoles) or isUserServerOwner(usr))
-# 	except:
-# 		print("An uncaught exception has occurred")
-# 		return False
-# 	return False
 
-# def isUserAdministrator_Check(ctx):
-# 	usr = ctx.message.author
-# 	return isUserAdministrator(usr)
+
 
 # # This checks if the user has the role specified by 'ModRole' property
 # def isUserModerator(usr):
@@ -287,6 +305,8 @@ async def purge(ctx, num):
 # def isUserModerator_Check(ctx):
 # 	usr = ctx.message.author
 # 	return isUserModerator(usr)
+
+
 
 # async def postModReport(event, reason, msg):
 # 	modChan = bc.getProperty('ModReportChannel')
