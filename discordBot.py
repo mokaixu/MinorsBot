@@ -4,6 +4,7 @@ import os
 import requests
 import json
 import emoji
+from discord.ext.commands import has_permissions, MissingPermissions
 
 from discord.ext import commands
 
@@ -240,21 +241,16 @@ def isUserAdministrator_Check(ctx):
     return isUserAdministrator(usr)
     
 @bot.command(pass_context=True)
-@commands.check(isUserAdministrator_Check)
-async def qotd(ctx, msg):
+@has_permissions(manage_roles=True, ban_members=True)
+async def qotd(ctx, *args):
+	msg = " ".join(args)
     # Sends a random greeting with the !greet command.
     #msg = greetings[random.randint(0, len(greetings) - 1)] + str(ctx.message.author) + '!'
-
-    name = ctx.message.author.nick
-    if name is None:
-        name = ctx.message.author
-
-    ch = 759447692446400532
-    await ch.send(msg)
     
-    
-    
+	channel = discord.utils.get(ctx.guild.channels, name='general')
+	await channel.send(msg)
 
+    # ch = bot.get_channel('759447692446400532')
 @bot.command(pass_context=True)
 async def purge(ctx, num):
     # Will recursively delete all messages you have sent within the last 14 days.
